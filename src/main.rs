@@ -1,7 +1,6 @@
 use std::io;
 
 fn main() {
-
     println!("Please enter a number");
 
     loop {
@@ -28,24 +27,23 @@ fn fib(n: u16) -> u128 {
         3 => 2,
         _ => calc_fib(n),
     };
-
-    fn calc_fib(a: u16) -> u128 {
-        let mut x: u128 = 0;
-        let mut y: u128 = 1;
-        let mut counter: u16 = 0;
-
-        let mut z: u128 = 0;
-
-        while counter < a - 1 {
-            z = x + y;
-            x = y;
-            y = z;
-            counter += 1;
-        }
-        z
-    }
-
     res
+}
+
+fn calc_fib(a: u16) -> u128 {
+    let mut x: u128 = 0;
+    let mut y: u128 = 1;
+    let mut counter: u16 = 0;
+
+    let mut z: u128 = 0;
+
+    while counter < a - 1 {
+        z = x + y;
+        x = y;
+        y = z;
+        counter += 1;
+    }
+    z
 }
 
 #[cfg(test)]
