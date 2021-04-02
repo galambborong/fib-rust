@@ -1,5 +1,24 @@
+use std::io;
+
 fn main() {
-    println!("{}", fib(100));
+
+    println!("Please enter a number");
+
+    loop {
+        let mut input = String::new();
+
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read input.");
+
+        let input: u16 = match input.trim().parse() {
+            Ok(num) => num,
+            Err(_) => break,
+        };
+
+        println!("The {}th fibonacci number is {}", input, fib(input));
+        break;
+    }
 }
 
 fn fib(n: u16) -> u128 {
