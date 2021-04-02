@@ -1,33 +1,31 @@
 fn main() {
-    println!("{}", fib(1000));
+    println!("{}", fib(100));
 }
 
-
-fn fib(n: u16) -> u64 {
+fn fib(n: u16) -> u128 {
     let res = match n {
         0 => 0,
         1 | 2 => 1,
         3 => 2,
-        _ => calc_fib(n)
+        _ => calc_fib(n),
     };
-    
-    fn calc_fib(a: u16) -> u64 {
-        
-        let mut x: u64 = 0;
-        let mut y: u64 = 1;
+
+    fn calc_fib(a: u16) -> u128 {
+        let mut x: u128 = 0;
+        let mut y: u128 = 1;
         let mut counter: u16 = 0;
-        
-        let mut z: u64 = 0;
-        
+
+        let mut z: u128 = 0;
+
         while counter < a - 1 {
             z = x + y;
             x = y;
             y = z;
             counter += 1;
         }
-        return z;
+        z
     }
-    
+
     res
 }
 
@@ -50,10 +48,10 @@ mod tests {
         assert_eq!(fib(9), 34);
         assert_eq!(fib(10), 55);
     }
-    
+
     #[test]
     fn fib_bigger_n() {
-        assert_eq!(fib(50), 12586269025);
-
+        assert_eq!(fib(50), 12_586_269_025);
+        assert_eq!(fib(100), 354_224_848_179_261_915_075);
     }
 }
