@@ -1,9 +1,8 @@
-use std::io;
 use num_format::{Locale, ToFormattedString};
-
+use std::io;
 
 fn main() {
-    println!("Find out the nth Fibonacci number.\nEnter your number:");
+    println!("Find out the nth Fibonacci number.\nNB: Accuracy is limited to unsigned 128-bit numbers, the maximum of which is\n{}\nIn other words, the maximum value you can pass for `n` is 186.\nEnter your number:", u128::MAX.to_formatted_string(&Locale::en));
 
     loop {
         let mut input = String::new();
@@ -17,9 +16,17 @@ fn main() {
             Err(_) => break,
         };
 
-        let result = fib(input).to_formatted_string(&Locale::en);
+        if input > 186 {
+            panic!("This will yield an inaccurate answer...")
+        }
 
-        println!("The {}th fibonacci number is {}", input, result);
+        let result = fib(input);
+
+        println!(
+            "The {}th fibonacci number is {}",
+            input,
+            result.to_formatted_string(&Locale::en)
+        );
         break;
     }
 }
@@ -78,7 +85,7 @@ mod tests {
 
     #[test]
     fn test_calc_fib() {
-        assert_eq!(calc_fib(10),55);
-        assert_eq!(calc_fib(20),6_765);
+        assert_eq!(calc_fib(10), 55);
+        assert_eq!(calc_fib(20), 6_765);
     }
 }
