@@ -1,7 +1,9 @@
 use std::io;
+use num_format::{Locale, ToFormattedString};
+
 
 fn main() {
-    println!("Please enter a number");
+    println!("Find out the nth Fibonacci number.\nEnter your number:");
 
     loop {
         let mut input = String::new();
@@ -15,7 +17,9 @@ fn main() {
             Err(_) => break,
         };
 
-        println!("The {}th fibonacci number is {}", input, fib(input));
+        let result = fib(input).to_formatted_string(&Locale::en);
+
+        println!("The {}th fibonacci number is {}", input, result);
         break;
     }
 }
@@ -70,5 +74,11 @@ mod tests {
     fn fib_bigger_n() {
         assert_eq!(fib(50), 12_586_269_025);
         assert_eq!(fib(100), 354_224_848_179_261_915_075);
+    }
+
+    #[test]
+    fn test_calc_fib() {
+        assert_eq!(calc_fib(10),55);
+        assert_eq!(calc_fib(20),6_765);
     }
 }
