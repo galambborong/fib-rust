@@ -2,7 +2,10 @@ use num_format::{Locale, ToFormattedString};
 use std::io;
 
 fn main() {
-    println!("Find out the nth Fibonacci number.\nNB: Accuracy is limited to unsigned 128-bit numbers, the maximum of which is\n{}\nIn other words, the maximum value you can pass for `n` is 186.\nEnter your number:", u128::MAX.to_formatted_string(&Locale::en));
+    println!("Find out the nth Fibonacci number.");
+    println!("Note: Correctness is limited to 128-bit unsigned integers.");
+    println!("The maximum value you can input as `n` is 186.");
+    println!("Please enter your number:");
 
     loop {
         let mut input = String::new();
